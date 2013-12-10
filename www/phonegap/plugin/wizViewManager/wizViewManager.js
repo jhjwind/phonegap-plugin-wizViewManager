@@ -59,7 +59,7 @@ View.prototype.canGoBack = function (success, failure) {
 };
 
 View.prototype.goBack = function () {
-    cordova.exec(null, null, "WizViewManagerPlugin", "canGoBack", [this.name]);
+    cordova.exec(null, null, "WizViewManagerPlugin", "goBack", [this.name]);
 };
 
 View.prototype.setLayout = function (options, success, failure) {
