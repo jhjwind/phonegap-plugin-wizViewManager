@@ -142,6 +142,14 @@ WizViewManager.prototype.load = function (name, source, success, failure) {
 	this.views[name].load(source, success, failure);
 };
 
+WizViewManager.prototype.canGoBack = function (name, success, failure) {
+    if (!this.views[name]) {
+        return this.throwError(failure, new Error('Load Error with view name: ' + name + '. View does not exist'));
+    }
+
+    this.views[name].canGoBack(success, failure);
+};
+
 WizViewManager.prototype.updateViewList = function (list) {
 		
 	// check for removed views
