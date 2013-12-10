@@ -36,6 +36,7 @@
 - (void)load:(CDVInvokedUrlCommand*)command;;
 - (void)removeView:(CDVInvokedUrlCommand*)command;
 - (void)setLayout:(CDVInvokedUrlCommand*)command;
+- (void)canGoBack:(CDVInvokedUrlCommand*)command;
 
 
 /**

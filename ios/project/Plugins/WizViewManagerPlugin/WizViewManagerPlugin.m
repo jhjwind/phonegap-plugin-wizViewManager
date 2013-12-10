@@ -127,6 +127,38 @@ static WizViewManagerPlugin *wizViewManagerInstance = NULL;
     
 }
 
+- (void)canGoBack:(CDVInvokedUrlCommand *)command {
+
+    // Assign arguments
+    NSString *viewName = [command.arguments objectAtIndex:0];
+    NSDictionary *options = nil;
+    if ([[command.arguments objectAtIndex:1] class] == [NSNull class]) {
+        // options are null
+        WizLog(@"Null options");
+    } else {
+        options = [command.arguments objectAtIndex:1];
+    }
+
+    CDVPluginResult *pluginResultOK = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    
+    if ([wizViewList objectForKey:viewName]) {
+        UIWebView *targetWebView = [wizViewList objectForKey:viewName];
+
+        if ([targetWebView canGoBack]) {
+          WizLog(@"[WizViewManager] ******* can go back, callback to show - %@", self.showViewCallbackId);
+          [self writeJavascript: [pluginResultOK toSuccessCallbackString:self.showViewCallbackId]];
+          self.showViewCallbackId = nil;
+        }else{
+          WizLog(@"[WizViewManager] ******* can't go back, callback to show - %@", self.showViewCallbackId);
+        }
+
+        //CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                                                      //messageAsDictionary:[self throwError:0 description:@"View not created. Check log output."] ];
+        //[self writeJavascript: [pluginResult toErrorCallbackString:command.callbackId]];
+    }
+
+}
+
 - (void)createView:(CDVInvokedUrlCommand *)command {
     
     // Assign arguments

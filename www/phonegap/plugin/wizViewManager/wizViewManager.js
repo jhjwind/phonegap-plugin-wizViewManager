@@ -54,6 +54,10 @@ View.prototype.load = function (source, success, failure) {
     cordova.exec(success, failure, "WizViewManagerPlugin", "load", [this.name, { src: source }]);
 };
 
+View.prototype.canGoBack = function (source, success, failure) {
+    cordova.exec(success, failure, "WizViewManagerPlugin", "canGoBack", [this.name]);
+};
+
 View.prototype.setLayout = function (options, success, failure) {
 	propsToString(options);
     cordova.exec(success, failure, "WizViewManagerPlugin", "setLayout", [this.name, options]);
