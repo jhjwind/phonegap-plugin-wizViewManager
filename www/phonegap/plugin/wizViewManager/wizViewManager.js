@@ -58,6 +58,10 @@ View.prototype.canGoBack = function (success, failure) {
     cordova.exec(success, failure, "WizViewManagerPlugin", "canGoBack", [this.name]);
 };
 
+View.prototype.goBack = function () {
+    cordova.exec(null, null, "WizViewManagerPlugin", "canGoBack", [this.name]);
+};
+
 View.prototype.setLayout = function (options, success, failure) {
 	propsToString(options);
     cordova.exec(success, failure, "WizViewManagerPlugin", "setLayout", [this.name, options]);
@@ -148,6 +152,14 @@ WizViewManager.prototype.canGoBack = function (name, success, failure) {
     }
 
     this.views[name].canGoBack(success, failure);
+};
+
+WizViewManager.prototype.goBack = function (name) {
+    if (!this.views[name]) {
+        return this.throwError(failure, new Error('Load Error with view name: ' + name + '. View does not exist'));
+    }
+
+    this.views[name].goBack();
 };
 
 WizViewManager.prototype.updateViewList = function (list) {

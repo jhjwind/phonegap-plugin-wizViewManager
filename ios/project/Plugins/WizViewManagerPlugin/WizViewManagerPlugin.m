@@ -127,6 +127,16 @@ static WizViewManagerPlugin *wizViewManagerInstance = NULL;
     
 }
 
+- (void)goBack:(CDVInvokedUrlCommand *)command {
+
+    NSString *viewName = [command.arguments objectAtIndex:0];
+    
+    if ([wizViewList objectForKey:viewName]) {
+        UIWebView *targetWebView = [wizViewList objectForKey:viewName];
+
+        [targetWebView goBack];
+    }
+}
 - (void)canGoBack:(CDVInvokedUrlCommand *)command {
 
     // Assign arguments
