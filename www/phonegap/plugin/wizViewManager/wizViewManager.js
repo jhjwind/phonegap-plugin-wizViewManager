@@ -54,7 +54,7 @@ View.prototype.load = function (source, success, failure) {
     cordova.exec(success, failure, "WizViewManagerPlugin", "load", [this.name, { src: source }]);
 };
 
-View.prototype.canGoBack = function (source, success, failure) {
+View.prototype.canGoBack = function (success, failure) {
     cordova.exec(success, failure, "WizViewManagerPlugin", "canGoBack", [this.name]);
 };
 
